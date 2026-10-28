@@ -1,0 +1,7 @@
+{
+  "HIEROPHANT2-HOARD.title": "Hoard",
+  "HIEROPHANT2-HOARD.description": "Gain a [gold]Gold[/gold] reward at the end of combat equal to the total [gold]Hoard[/gold] value of cards that haven't been [gold]Exhausted[/gold].",
+  "HIEROPHANT2-GILDED.title": "Gilded",
+  "HIEROPHANT2-GILDED.description": "Gain a [gold]Doubloon[/gold] when you gain this card.",
+  "HIEROPHANT2-GILDED_TWO.description": "Gain two [gold]Doubloons[/gold] when you gain this card."
+}

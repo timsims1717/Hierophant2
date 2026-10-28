@@ -1,0 +1,9 @@
+{
+  "HIEROPHANT2-HALLOWED_STIPEND.title": "Hallowed Stipend",
+  "HIEROPHANT2-HALLOWED_STIPEND.description": "The first time you lose gold each combat, lose [green]5[/green] less.",
+  "HIEROPHANT2-HALLOWED_STIPEND.flavor": "A faithful servant is expected to primarily fund their own mission.",
+
+  "HIEROPHANT2-CONSECRATED_STIPEND.title": "Consecrated Stipend",
+  "HIEROPHANT2-CONSECRATED_STIPEND.description": "The first three times you lose gold each combat, lose [green]8[/green] less.",
+  "HIEROPHANT2-CONSECRATED_STIPEND.flavor": "A true servant may receive greater funding for their mission."
+}

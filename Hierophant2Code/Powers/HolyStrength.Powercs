@@ -1,0 +1,15 @@
+using Hierophant2.Hierophant2Code.Powers;
+using MegaCrit.Sts2.Core.Entities.Powers;
+
+namespace Hierophant2.Hierophant2Code.Powers;
+
+public class HolyStrength() : Hierophant2Power
+{
+    public override PowerType Type =>
+        PowerType.Buff;
+
+    public override PowerStackType StackType =>
+        PowerStackType.Counter;
+
+    
+}

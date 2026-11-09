@@ -12,7 +12,7 @@ public class Encroach : Hierophant2Card
         CardRarity.Common,
         TargetType.Self)
     {
-        WithBlock(11, 3);
+        WithBlock(12, 3);
         WithCards(2);
     }
     

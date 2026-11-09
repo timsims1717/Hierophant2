@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 
 #endregion
 
@@ -52,9 +53,23 @@ internal static class SpendResourcedTithePatch
 			if (diff > 0)
 			{
 				PlayerCmd.LoseGold(Hierophant2Card.TitheAmount*diff, __instance.Owner,GoldLossType.Spent);
-				// PlayerChoiceContext context = new HookPlayerChoiceContext(__instance, __instance.Owner, __instance.Owner.NetId, GameActionType.Combat);
-				// LoseGoldHook.TriggerGoldLoss(context, __instance.Owner, Hierophant2Card.TitheAmount*diff, GoldLossType.Spent);
 			}
 		}
+	}
+}
+
+[HarmonyPatch(typeof(CardModel),
+	nameof(CardModel.EndOfTurnCleanup))]
+internal static class EndOfTurnCleanupTithePatch
+{
+	[HarmonyPrefix]
+	internal static void Prefix(CardModel __instance)
+	{
+		if (Hierophant2Card.HasSingleTurnTithe.Get(__instance))
+		{
+			__instance.RemoveKeyword(Hierophant2Card.Tithe);
+			NCard.FindOnTable(__instance)?.UpdateVisuals(__instance.Pile.Type, CardPreviewMode.Normal);
+		}
+		Hierophant2Card.HasSingleTurnTithe.Set(__instance, false);
 	}
 }

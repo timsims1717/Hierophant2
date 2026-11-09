@@ -3,13 +3,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
+namespace Hierophant2.Hierophant2Code.Cards.Rare;
 
 public class ArchangelShield : Hierophant2Card
 {
     public ArchangelShield() : base(2,
         CardType.Power,
-        CardRarity.Uncommon,
+        CardRarity.Rare,
         TargetType.Self)
     {
         WithCostUpgradeBy(-1);

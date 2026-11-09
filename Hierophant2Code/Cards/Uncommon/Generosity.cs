@@ -4,18 +4,18 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hierophant2.Hierophant2Code.Cards.Rare;
+namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
 
 public class Generosity : Hierophant2Card
 {
-    public Generosity() : base(2,
+    public Generosity() : base(1,
         CardType.Power,
-        CardRarity.Rare,
+        CardRarity.Uncommon,
         TargetType.Self)
     {
-        WithPower<GenerosityPower>(2, 1);
+        WithPower<GenerosityPower>(1);
         WithGilded();
-        UpgradeKeywords.Add((Tithe, UpgradeType.Add));
+        UpgradeKeywords.Add((CardKeyword.Innate, UpgradeType.Add));
     }
 
     protected override async Task OnPlay(
@@ -24,7 +24,7 @@ public class Generosity : Hierophant2Card
     {
         await PowerCmd.Apply<GenerosityPower>(choiceContext,
             Owner.Creature,
-            DynamicVars.Power<GenerosityPower>().BaseValue,
+            DynamicVars.Power<GenerosityPower>().IntValue,
             Owner.Creature,
             this);
     }

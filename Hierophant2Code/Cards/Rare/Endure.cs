@@ -4,16 +4,16 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
+namespace Hierophant2.Hierophant2Code.Cards.Rare;
 
 public class Endure : Hierophant2Card
 {
     public Endure() : base(1,
         CardType.Skill,
-        CardRarity.Uncommon,
+        CardRarity.Rare,
         TargetType.Self)
     {
-        WithBlock(7, 3);
+        WithBlock(9, 3);
         WithCards(1);
         WithTip(CardKeyword.Retain);
     }

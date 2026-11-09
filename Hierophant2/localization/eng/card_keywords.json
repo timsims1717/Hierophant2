@@ -1,4 +1,6 @@
 {
   "HIEROPHANT2-TITHE.description": "You may play this card when you don't have enough energy by paying [blue]10[/blue] [gold]gold[/gold] per energy missing.",
-  "HIEROPHANT2-TITHE.title": "Tithe"
+  "HIEROPHANT2-TITHE.title": "Tithe",
+  "HIEROPHANT2-GILDED.description": "Gain a [gold]Doubloon[/gold] when you gain this card.",
+  "HIEROPHANT2-GILDED.title": "Gilded"
 }

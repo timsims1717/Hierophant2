@@ -1,22 +1,20 @@
+using BaseLib.Extensions;
+using Hierophant2.Hierophant2Code.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
 
-public class Remorse : Hierophant2Card
+public class GoldFever : Hierophant2Card
 {
-    public Remorse() : base(1,
+    public GoldFever() : base(2,
         CardType.Attack,
-        CardRarity.Uncommon,
+        CardRarity.Rare,
         TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(6, 3,
-            (Func<CardModel, Creature, Decimal>)((card, _) => DoubloonsInExhaustPile(card, _)),
-            ValueProp.Move, 0, 1);
+        WithDamage(16);
+        WithPower<GoldFeverPower>(4, 2);
         WithGilded();
     }
 
@@ -25,10 +23,15 @@ public class Remorse : Hierophant2Card
         CardPlay play)
     {
         ArgumentNullException.ThrowIfNull((object) play.Target, "cardPlay.Target");
-        await DamageCmd.Attack(DynamicVars.CalculatedDamage)
+        await DamageCmd.Attack(DynamicVars.Damage.IntValue)
             .FromCard(this, play)
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
+        await PowerCmd.Apply<GoldFeverPower>(choiceContext,
+            play.Target,
+            DynamicVars.Power<GoldFeverPower>().BaseValue, 
+            Owner.Creature, 
+            this);
     }
 }

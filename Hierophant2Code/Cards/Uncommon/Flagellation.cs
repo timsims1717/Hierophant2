@@ -12,7 +12,7 @@ public class Flagellation : Hierophant2Card
         CardRarity.Uncommon,
         TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
+        WithDamage(7, 10);
         WithCalculatedVar("CalculatedHits", 1, GainedPietyThisTurnCount);
     }
 

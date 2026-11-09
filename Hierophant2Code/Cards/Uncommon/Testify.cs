@@ -4,13 +4,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hierophant2.Hierophant2Code.Cards.Rare;
+namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
 
 public class Testify : Hierophant2Card
 {
     public Testify() : base(0,
         CardType.Skill,
-        CardRarity.Rare,
+        CardRarity.Uncommon,
         TargetType.Self)
     {
         WithPower<TestifyPower>(2, 1);

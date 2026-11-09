@@ -12,6 +12,8 @@ public class Repentance : Hierophant2Card
         CardRarity.Rare,
         TargetType.Self)
     {
+        WithCalculatedVar("PietyGained", 0, CurrentPiety);
+        WithPietyTip();
         WithKeyword(CardKeyword.Exhaust);
         UpgradeKeywords.Add((CardKeyword.Exhaust, UpgradeType.Remove));
     }
@@ -20,9 +22,9 @@ public class Repentance : Hierophant2Card
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<RepentancePower>(choiceContext,
+        await PowerCmd.Apply<PietyPower>(choiceContext,
             play.Player.Creature,
-            1,
+            play.Card.Owner.Creature.GetPowerAmount<PietyPower>(),
             play.Player.Creature,
             this);
     }

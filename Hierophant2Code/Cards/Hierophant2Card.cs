@@ -189,36 +189,25 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
     [CustomEnum]
     public static CardTag IsDoubloon;
     
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.After)]
+    public static CardKeyword Gilded;
+    
     public static bool IsAnUnupgradedDoubloon(CardModel card)
     {
         return !card.Tags.Contains(IsDoubloon) && !card.IsUpgraded;
     }
-    
+
     protected ConstructedCardModel WithGilded()
     {
-        return WithGilded(1);
-    }
-    
-    protected ConstructedCardModel WithGilded(int baseVal)
-    {
-        WithVar(new GildedVar(baseVal));
-        WithGildedTip(baseVal);
+        WithKeyword(Gilded);
+        WithTip(new TooltipSource(_ => HoverTipFactory.FromCard<Doubloon>()));
         return this;
     }
-
-    protected ConstructedCardModel WithGildedTip(int n)
+    
+    protected ConstructedCardModel WithGildedTip()
     {
-        LocString title = new LocString("static_hover_tips", "HIEROPHANT2-GILDED.title");
-        LocString description;
-        if (n > 1)
-        {
-            description = new LocString("static_hover_tips", "HIEROPHANT2-GILDED_TWO.description");
-        }
-        else
-        {
-            description = new LocString("static_hover_tips", "HIEROPHANT2-GILDED.description");
-        }
-
+        LocString title = new LocString("card_keywords", "HIEROPHANT2-GILDED.title");
+        LocString description = new LocString("card_keywords", "HIEROPHANT2-GILDED.description");
         WithTip(new TooltipSource(_ => new HoverTip(title, description)));
         WithTip(new TooltipSource(_ => HoverTipFactory.FromCard<Doubloon>()));
         return this;
@@ -268,17 +257,6 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
         LocString description = new LocString("card_keywords", "HIEROPHANT2-TITHE.description");
         WithTip(new TooltipSource(_ => new HoverTip(title, description)));
         return this;
-    }
-
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext,
-        CombatSide side,
-        IEnumerable<Creature> participants)
-    {
-        if (HasSingleTurnTithe.Get(this))
-        {
-            RemoveKeyword(Tithe);
-            NCard.FindOnTable(this)?.UpdateVisuals(Pile.Type, CardPreviewMode.Normal);
-        }
     }
     
     /* *** OTHER STUFF *** */

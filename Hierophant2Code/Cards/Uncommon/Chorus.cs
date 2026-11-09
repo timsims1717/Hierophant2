@@ -1,3 +1,4 @@
+using BaseLib.Extensions;
 using Hierophant2.Hierophant2Code.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,14 +8,13 @@ namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
 
 public class Chorus : Hierophant2Card
 {
-    public Chorus() : base(1,
+    public Chorus() : base(0,
         CardType.Skill,
         CardRarity.Uncommon,
         TargetType.Self)
     {
-        WithFervor(3, 0);
-        WithKeyword(CardKeyword.Exhaust);
-        UpgradeKeywords.Add((CardKeyword.Exhaust, UpgradeType.Remove));
+        WithFervor(3, 2);
+        WithPiety(3, 2);
     }
 
     protected override async Task OnPlay(
@@ -23,11 +23,11 @@ public class Chorus : Hierophant2Card
     {
         await PowerCmd.Apply<FervorPower>(choiceContext, 
             Owner.Creature,
-            DynamicVars[nameof(FervorPower)].BaseValue, 
+            DynamicVars.Power<FervorPower>().IntValue,
             Owner.Creature, this);
-        await PowerCmd.Apply<FervorPower>(choiceContext, 
+        await PowerCmd.Apply<PietyPower>(choiceContext, 
             Owner.Creature,
-            Owner.Creature.GetPowerAmount<FervorPower>(), 
+            DynamicVars.Power<PietyPower>().IntValue,
             Owner.Creature, this);
     }
 }

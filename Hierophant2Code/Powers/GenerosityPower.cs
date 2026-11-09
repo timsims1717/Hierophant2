@@ -1,32 +1,40 @@
 using Hierophant2.Hierophant2Code.Cards;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hierophant2.Hierophant2Code.Powers;
 
 public class GenerosityPower : Hierophant2Power
 {
+    public static int GenerosityBlock = 4;
     public override PowerType Type =>
         PowerType.Buff;
 
     public override PowerStackType StackType =>
         PowerStackType.Counter;
-
-    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
+    
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (card.Owner.Creature != Owner || !card.Tags.Contains(Hierophant2Card.IsDoubloon)
-            || CombatManager.Instance.History.Entries
-                .OfType<CardDrawnEntry>().Count(e =>
-                    e.HappenedThisTurn(CombatState) && e.Actor == Owner && card.Tags.Contains(Hierophant2Card.IsDoubloon)) > 1)
+        if (!cardPlay.Card.Tags.Contains(Hierophant2Card.IsDoubloon)
+            || cardPlay.Card.Owner != Owner.Player)
         {
             return;
         }
 
+        Creature? target = Owner.Player.RunState.Rng.CombatTargets.NextItem(CombatState.Enemies);
+        if (target == null)
+        {
+            return;
+        }
         Flash();
+        await CreatureCmd.GainBlock(target,
+            GenerosityBlock * Amount,
+            ValueProp.Unpowered,
+            null);
         await CardPileCmd.Draw(choiceContext, Amount, Owner.Player);
     }
 }

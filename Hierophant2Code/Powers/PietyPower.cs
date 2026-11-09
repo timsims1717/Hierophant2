@@ -8,6 +8,8 @@ namespace Hierophant2.Hierophant2Code.Powers;
 
 public class PietyPower : Hierophant2Power
 {
+    public static decimal PietyDecrease = 0.25M;
+    
     public override PowerType Type =>
         PowerType.Buff;
 
@@ -19,9 +21,9 @@ public class PietyPower : Hierophant2Power
     {
         if (side != CombatSide.Enemy && !CombatManager.Instance.IsOverOrEnding)
         {
-            if (!Owner.HasPower<RepentancePower>() && !Owner.HasPower<EnlightenedPower>())
+            if (!Owner.HasPower<EnlightenedPower>())
             {
-                decimal losePiety = -Math.Ceiling(Amount / 2M);
+                decimal losePiety = -Math.Ceiling(Amount * PietyDecrease);
                 if (Owner.HasPower<HolySoulPower>())
                 {
                     losePiety += Owner.GetPowerAmount<HolySoulPower>();
@@ -33,10 +35,6 @@ public class PietyPower : Hierophant2Power
                 }
 
                 await PowerCmd.ModifyAmount(choiceContext, this, losePiety, Owner, null);
-            }
-            else if (Owner.HasPower<RepentancePower>())
-            {
-                await PowerCmd.ModifyAmount(choiceContext, this, Amount, Owner, null);
             }
         }
     }

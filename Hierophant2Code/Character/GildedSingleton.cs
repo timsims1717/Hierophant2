@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using Hierophant2.Hierophant2Code.Cards;
 using Hierophant2.Hierophant2Code.Cards.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,12 +21,9 @@ public class GildedSingleton() : CustomSingletonModel(HookType.Run)
             return;
         }
 
-        if (card.DynamicVars.Keys.Contains(GildedVar.DefaultName))
+        if (card.CanonicalKeywords.Contains(Hierophant2Card.Gilded))
         {
-            int c = card.DynamicVars[GildedVar.DefaultName].IntValue;
-            for (int i = 0; i < c; i++) {
                 CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(card.Owner.RunState.CreateCard<Doubloon>(card.Owner), PileType.Deck), 1.5f);
-            }
         }
     }
 }

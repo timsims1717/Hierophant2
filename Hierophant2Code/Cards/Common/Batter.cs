@@ -3,13 +3,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Hierophant2.Hierophant2Code.Cards.Uncommon;
+namespace Hierophant2.Hierophant2Code.Cards.Common;
 
 public class Batter : Hierophant2Card
 {
     public Batter() : base(1,
         CardType.Attack,
-        CardRarity.Uncommon,
+        CardRarity.Common,
         TargetType.AllEnemies)
     {
         WithDamage(7, 3);

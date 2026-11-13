@@ -20,7 +20,7 @@ public class StrikeHierophant : Hierophant2Card
         CardPlay play)
     {
         ArgumentNullException.ThrowIfNull((object) play.Target, "cardPlay.Target");
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        await DamageCmd.Attack(DynamicVars.Damage.IntValue)
             .FromCard(this, play)
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt")

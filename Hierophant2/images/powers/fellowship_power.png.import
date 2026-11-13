@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4025gtsqkgue"
-path="res://.godot/imported/auric_form_power.png-3b7c3c09265ff03ab8a2bf929f17c5b5.ctex"
+uid="uid://dll5l8o5d5y3a"
+path="res://.godot/imported/fellowship_power.png-9f87eda047c41d6fe1f40cf4f9fd4c38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hierophant2/images/powers/auric_form_power.png"
-dest_files=["res://.godot/imported/auric_form_power.png-3b7c3c09265ff03ab8a2bf929f17c5b5.ctex"]
+source_file="res://Hierophant2/images/powers/fellowship_power.png"
+dest_files=["res://.godot/imported/fellowship_power.png-9f87eda047c41d6fe1f40cf4f9fd4c38.ctex"]
 
 [params]
 

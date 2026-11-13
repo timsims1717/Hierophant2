@@ -6,7 +6,7 @@ namespace Hierophant2.Hierophant2Code.Character;
 
 public class Hierophant2PotionPool : CustomPotionPoolModel
 {
-    public override Color LabOutlineColor => Hierophant2.Color;
+    public override Color LabOutlineColor => Hierophant2.Gold;
 
 
     public override string BigEnergyIconPath => "charui/big_energy.png".ImagePath();

@@ -16,8 +16,8 @@ public class PietyPower : Hierophant2Power
     public override PowerStackType StackType =>
         PowerStackType.Counter;
     
-    // At the late end of the turn, reduce the Piety of this power stack by half.
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    // At the late end of the turn, reduce the Piety of this power stack.
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Enemy && !CombatManager.Instance.IsOverOrEnding)
         {

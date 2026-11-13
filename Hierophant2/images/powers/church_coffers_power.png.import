@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0rftrm53182m"
-path="res://.godot/imported/missionaries_power.png-3289c82221fa01a6fca6e14d484162c5.ctex"
+uid="uid://b4025gtsqkgue"
+path="res://.godot/imported/church_coffers_power.png-4cd96c08a58ce7d0488be6c24cfdccf0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hierophant2/images/powers/big/missionaries_power.png"
-dest_files=["res://.godot/imported/missionaries_power.png-3289c82221fa01a6fca6e14d484162c5.ctex"]
+source_file="res://Hierophant2/images/powers/church_coffers_power.png"
+dest_files=["res://.godot/imported/church_coffers_power.png-4cd96c08a58ce7d0488be6c24cfdccf0.ctex"]
 
 [params]
 

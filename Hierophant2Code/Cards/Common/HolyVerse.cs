@@ -13,7 +13,7 @@ public class HolyVerse : Hierophant2Card
         CardRarity.Common,
         TargetType.Self)
     {
-        WithPiety(10, 5);
+        WithPiety(11, 4);
         WithTags(IsHoly);
     }
 

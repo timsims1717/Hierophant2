@@ -14,6 +14,7 @@ public class DivineIntervention : Hierophant2Card
         TargetType.Self)
     {
         WithPower<DivineInterventionPower>(20, 5);
+        WithKeyword(Tithe);
     }
 
     protected override async Task OnPlay(

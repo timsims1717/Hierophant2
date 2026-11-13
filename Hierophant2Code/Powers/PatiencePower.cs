@@ -20,17 +20,12 @@ public class PatiencePower() : Hierophant2Power
 
     public bool OffThisTurn;
 
-    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext,
-        Creature? dealer, DamageResult result, ValueProp props,
-        Creature target, CardModel? cardSource)
+    public override async Task AfterCardPlayed(
+        PlayerChoiceContext choiceContext,
+        CardPlay cardPlay)
     {
-        if (dealer == null || dealer != Owner || dealer == target
-            || cardSource == null || cardSource.Type != CardType.Attack)
-        {
-            return;
-        }
-
-        if (result.WasFullyBlocked || result.UnblockedDamage == 0)
+        if (!Owner.IsPlayer || cardPlay.Player != Owner.Player 
+            || cardPlay.Card.Type != CardType.Attack)
         {
             return;
         }

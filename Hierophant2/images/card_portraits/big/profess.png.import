@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca8e74pt08iwt"
-path="res://.godot/imported/auric_form_power.png-2ce62f968ad455ed18fb19dd6dd04a27.ctex"
+uid="uid://byrxqetbp37qt"
+path="res://.godot/imported/profess.png-d52cb63c11ce50fd3447045d4b442489.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hierophant2/images/powers/big/auric_form_power.png"
-dest_files=["res://.godot/imported/auric_form_power.png-2ce62f968ad455ed18fb19dd6dd04a27.ctex"]
+source_file="res://Hierophant2/images/card_portraits/big/profess.png"
+dest_files=["res://.godot/imported/profess.png-d52cb63c11ce50fd3447045d4b442489.ctex"]
 
 [params]
 

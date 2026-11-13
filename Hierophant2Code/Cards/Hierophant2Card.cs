@@ -62,7 +62,7 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
         return this;
     }
     
-    protected static decimal GainedPietyThisTurnCount(CardModel card, Creature? _)
+    public static decimal GainedPietyThisTurnCount(CardModel card, Creature? _)
     {
         return CombatManager.Instance.History.Entries
             .OfType<PowerReceivedEntry>()
@@ -125,7 +125,7 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
         return false;
     }
 
-    protected static decimal GetEnemyBlock(CardModel _, Creature? creature)
+    public static decimal GetEnemyBlock(CardModel _, Creature? creature)
     {
         if (creature != null)
         {
@@ -161,7 +161,7 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
     [CustomEnum]
     public static CardTag IsHoly;
     
-    protected static decimal HolyCardsInDeck(CardModel card, Creature? _)
+    public static decimal HolyCardsInDeck(CardModel card, Creature? _)
     {
         return card.Owner.PlayerCombatState.AllCards
             .Count(c => c.Tags.Contains(IsHoly)) - 1;
@@ -182,6 +182,20 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
         LocString description = new LocString("static_hover_tips", "HIEROPHANT2-HOARD.description");
         WithTip(new TooltipSource(_ => new HoverTip(title, description)));
         return this;
+    }
+    
+    public static bool HasHoard(CardModel card)
+    {
+        return card.DynamicVars[HoardVar.DefaultName].IntValue > 0;
+    }
+    
+    public static bool PlayedHoardCardThisTurn(CardModel card)
+    {
+        return CombatManager.Instance.History.Entries
+            .OfType<CardPlayFinishedEntry>()
+            .Count(p => p.HappenedThisTurn(card.CombatState)
+                        && HasHoard(card)
+                        && p.CardPlay.Player == card.Owner) > 0;
     }
     
     /* *** GILDED MECHANIC *** */
@@ -213,7 +227,7 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
         return this;
     }
     
-    protected static bool PlayedDoubloonThisTurn(CardModel card)
+    public static bool PlayedDoubloonThisTurn(CardModel card)
     {
         return CombatManager.Instance.History.Entries
             .OfType<CardPlayFinishedEntry>()
@@ -222,7 +236,7 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
                         && p.CardPlay.Player == card.Owner) > 0;
     }
 
-    protected static decimal DoubloonsInExhaustPile(CardModel card, Creature? _)
+    public static decimal DoubloonsInExhaustPile(CardModel card, Creature? _)
     {
         return PileType.Exhaust.GetPile(card.Owner).Cards
             .Count(c => c.Tags.Contains(IsDoubloon));
@@ -262,14 +276,20 @@ public abstract class Hierophant2Card(int cost, CardType type, CardRarity rarity
     /* *** OTHER STUFF *** */
     
     // counts the total energy cost of cards in hand besides the card given as a parameter
-    protected static decimal TotalCostOfCardsInHand(CardModel card, Creature? _)
+    public static decimal TotalCostOfCardsInHand(CardModel card, Creature? _)
     {
         return PileType.Hand.GetPile(card.Owner).Cards
             .Where(c => c != card)
             .Sum(c => c.EnergyCost.GetAmountToSpend());
     }
     
-    protected static decimal TotalCostOfCardsInDeck(CardModel card, Creature? _)
+    public static decimal TotalCostOfCardsInHandOwner(Player owner, Creature? _)
+    {
+        return PileType.Hand.GetPile(owner).Cards
+            .Sum(c => c.EnergyCost.GetAmountToSpend());
+    }
+    
+    public static decimal TotalCostOfCardsInDeck(CardModel card, Creature? _)
     {
         return (
             from pile in card.Owner.Piles

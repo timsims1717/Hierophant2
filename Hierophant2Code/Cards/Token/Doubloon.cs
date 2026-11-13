@@ -22,8 +22,8 @@ public class Doubloon : ConstructedCardModel
         WithTags(Hierophant2Card.IsDoubloon);
         WithKeyword(CardKeyword.Exhaust);
         WithCards(1, 1);
-        WithVar(new GoldVar(4));
-        WithVar(new HoardVar(2));
+        WithVar(new GoldVar(3));
+        // WithVar(new HoardVar(2));
     }
     
     public override bool CanBeGeneratedInCombat => false;

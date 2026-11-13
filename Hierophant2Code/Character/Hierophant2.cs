@@ -15,11 +15,11 @@ namespace Hierophant2.Hierophant2Code.Character;
 {
     public const string CharacterId = "Hierophant2";
 
-    public static readonly Color Color = new("E3BE00");
+    public static readonly Color Gold = new("EDB600");
 
-    public override Color NameColor => Color;
+    public override Color NameColor => Gold;
     public override CharacterGender Gender => CharacterGender.Masculine;
-    public override int StartingHp => 70;
+    public override int StartingHp => 75;
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
@@ -57,6 +57,16 @@ namespace Hierophant2.Hierophant2Code.Character;
             return icon;
         }
     }
+    
+    public override Color EnergyLabelOutlineColor => Gold;
+
+    public override Color DialogueColor => Gold;
+
+    public override Color MapDrawingColor => Gold;
+
+    public override Color RemoteTargetingLineColor => Gold;
+
+    public override Color RemoteTargetingLineOutline => Gold;
 
     public override string CustomIconTexturePath => "character_icon_hierophant.png".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_hierophant.png".CharacterUiPath();

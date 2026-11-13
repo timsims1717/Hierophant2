@@ -23,7 +23,7 @@ public class GildedSingleton() : CustomSingletonModel(HookType.Run)
 
         if (card.CanonicalKeywords.Contains(Hierophant2Card.Gilded))
         {
-                CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(card.Owner.RunState.CreateCard<Doubloon>(card.Owner), PileType.Deck), 1.5f);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(card.Owner.RunState.CreateCard<Doubloon>(card.Owner), PileType.Deck), 1.5f);
         }
     }
 }

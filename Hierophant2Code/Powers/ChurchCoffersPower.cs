@@ -27,7 +27,7 @@ public class ChurchCoffersPower : Hierophant2Power
         }
 
         foreach (CardModel card in await CardSelectCmd.FromHand(choiceContext, player,
-                     new CardSelectorPrefs(SelectionScreenPrompt, Amount) { PretendCardsCanBePlayed = true },
+                     new CardSelectorPrefs(SelectionScreenPrompt, Amount),
                      Hierophant2Card.CanHaveTithe, this))
         {
             card.AddKeyword(Hierophant2Card.Tithe);

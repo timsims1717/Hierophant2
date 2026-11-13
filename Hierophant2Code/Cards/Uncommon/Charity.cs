@@ -14,6 +14,7 @@ public class Charity : Hierophant2Card
         TargetType.Self)
     {
         WithPower<CharityPower>(3, 1);
+        WithGilded();
     }
 
     protected override async Task OnPlay(

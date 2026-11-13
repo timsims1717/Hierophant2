@@ -7,12 +7,12 @@ namespace Hierophant2.Hierophant2Code.Cards.Common;
 
 public class Encroach : Hierophant2Card
 {
-    public Encroach() : base(2,
+    public Encroach() : base(1,
         CardType.Skill,
         CardRarity.Common,
         TargetType.Self)
     {
-        WithBlock(12, 3);
+        WithBlock(7, 2);
         WithCards(2);
     }
     

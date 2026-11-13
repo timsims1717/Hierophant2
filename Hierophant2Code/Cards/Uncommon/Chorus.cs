@@ -15,6 +15,7 @@ public class Chorus : Hierophant2Card
     {
         WithFervor(3, 2);
         WithPiety(3, 2);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlay(

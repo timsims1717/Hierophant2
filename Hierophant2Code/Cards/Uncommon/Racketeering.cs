@@ -14,10 +14,10 @@ public class Racketeering : Hierophant2Card
         CardRarity.Uncommon,
         TargetType.AnyEnemy)
     {
-        WithEnemyBlock(10, 5);
+        WithEnemyBlock(5, 5);
         WithVar(new DynamicVar("BlockPerCard", 5));
         WithCards(1);
-        WithKeyword(CardKeyword.Exhaust);
+        // WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlay(

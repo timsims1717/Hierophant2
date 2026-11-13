@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hierophant2.Hierophant2Code.Cards.Rare;
@@ -17,12 +16,9 @@ public class MintersHammer : Hierophant2Card
         CardRarity.Rare,
         TargetType.Self)
     {
-        WithVar(new PowerVar<FervorPower>(8).WithUpgrade(4));
+        WithFervor(10, 3);
         WithGilded();
-        WithKeyword(CardKeyword.Exhaust);
     }
-    
-    public override bool CanBeGeneratedInCombat => false;
     protected override bool ShouldGlowGoldInternal => ShouldThisCardGlow(this);
 
     protected override async Task OnPlay(
@@ -37,9 +33,9 @@ public class MintersHammer : Hierophant2Card
         if (card != null)
         {
             CardCmd.Upgrade(card);
-            if (!(DeckVersion is Doubloon deckVersion))
-                return;
-            CardCmd.Upgrade(deckVersion);
+            // if (!(DeckVersion is Doubloon deckVersion))
+            //     return;
+            // CardCmd.Upgrade(deckVersion);
         }
         await PowerCmd.Apply<FervorPower>(choiceContext, 
             Owner.Creature,

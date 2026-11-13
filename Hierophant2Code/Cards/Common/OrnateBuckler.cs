@@ -7,12 +7,12 @@ namespace Hierophant2.Hierophant2Code.Cards.Common;
 public class OrnateBuckler : Hierophant2Card
 {
     
-    public OrnateBuckler() : base(1,
+    public OrnateBuckler() : base(2,
         CardType.Skill,
         CardRarity.Common,
         TargetType.Self)
     {
-        WithBlock(8, 2);
+        WithBlock(12, 2);
         WithHoard(3, 1);
     }
     

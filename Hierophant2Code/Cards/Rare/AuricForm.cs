@@ -1,8 +1,7 @@
-using BaseLib.Extensions;
-using Hierophant2.Hierophant2Code.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Hierophant2.Hierophant2Code.Cards.Rare;
 
@@ -13,16 +12,18 @@ public class AuricForm : Hierophant2Card
         CardRarity.Rare,
         TargetType.Self)
     {
-        WithPower<AuricFormPower>(5, 3);
+        WithVar("Percent", 1, 1);
+        WithTip(typeof(PlatingPower));
     }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<AuricFormPower>(choiceContext,
+        decimal loseGold = play.Player.Gold * DynamicVars["Percent"].IntValue * 0.01M;
+        await PowerCmd.Apply<PlatingPower>(choiceContext,
             Owner.Creature,
-            DynamicVars.Power<AuricFormPower>().IntValue,
+            loseGold,
             Owner.Creature,
             this);
     }

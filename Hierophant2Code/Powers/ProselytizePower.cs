@@ -16,7 +16,9 @@ public class ProselytizePower() : Hierophant2Power
     public override PowerStackType StackType =>
         PowerStackType.Counter;
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side,
+        IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (side == Owner.Side && Owner.IsPlayer && Owner.HasPower<PietyPower>())
         {

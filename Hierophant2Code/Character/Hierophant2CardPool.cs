@@ -16,9 +16,9 @@ public class Hierophant2CardPool : CustomCardPoolModel
     They are applied as a shader onto an already colored image,
     so it may take some experimentation to find a color you like.
     Generally they should be values between 0 and 1. */
-    public override float H => 0.1389f; //Hue; changes the color.
-    public override float S => 0.8f; //Saturation
-    public override float V => 1f; //Brightness
+    public override float H => 0.1797f; //Hue; changes the color.
+    public override float S => 1.0f; //Saturation
+    public override float V => 0.93f; //Brightness
 
     //Alternatively, leave these values at 1 and provide a custom frame image.
     /*public override Texture2D CustomFrame(CustomCardModel card)
@@ -28,7 +28,7 @@ public class Hierophant2CardPool : CustomCardPoolModel
     }*/
 
     //Color of small card icons
-    public override Color DeckEntryCardColor => Hierophant2.Color;
+    public override Color DeckEntryCardColor => Hierophant2.Gold;
 
     public override bool IsColorless => false;
 }

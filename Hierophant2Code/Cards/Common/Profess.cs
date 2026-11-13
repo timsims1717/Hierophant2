@@ -14,9 +14,11 @@ public class Profess : Hierophant2Card
         CardRarity.Common,
         TargetType.Self)
     {
-        WithBlock(4, 2);
-        WithPiety(4, 2);
+        WithBlock(5, 2);
+        WithPiety(5, 2);
     }
+    
+    public override bool GainsBlock => true;
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

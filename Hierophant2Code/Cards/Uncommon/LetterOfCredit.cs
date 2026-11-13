@@ -15,7 +15,8 @@ public class LetterOfCredit : Hierophant2Card
         TargetType.Self)
     {
         WithBlock(3, 2);
-        WithGilded();
+        // WithGilded();
+        WithHoard(2, 1);
         WithTitheTip();
     }
     

@@ -10,9 +10,9 @@ public class Flagellation : Hierophant2Card
     public Flagellation() : base(1,
         CardType.Attack,
         CardRarity.Uncommon,
-        TargetType.AnyEnemy)
+        TargetType.AllEnemies)
     {
-        WithDamage(7, 10);
+        WithDamage(7, 3);
         WithCalculatedVar("CalculatedHits", 1, GainedPietyThisTurnCount);
     }
 
@@ -20,11 +20,11 @@ public class Flagellation : Hierophant2Card
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        ArgumentNullException.ThrowIfNull((object) play.Target, "cardPlay.Target");
+        // ArgumentNullException.ThrowIfNull((object) play.Target, "cardPlay.Target");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount((int) ((CalculatedVar) DynamicVars["CalculatedHits"]).Calculate(play.Target))
             .FromCard(this, play)
-            .Targeting(play.Target)
+            .TargetingRandomOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
     }
